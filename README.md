@@ -1,5 +1,10 @@
 # AWS SDK for JavaScript v3
 
+## HIVE VERSION
+We remove the validation for setting presigned URL expiration past one week, as we want clients to be able to access our personal Ceph bucket (non-AWS) objects up to 6 months in the future. AWS removed support for Version 2 signatures in their client library which allows for indefinite expiration, and instead forces Version 4, which allows a max of 7 days. While simply removing the validation won't allow us to access AWS S3 buckets after the one week period, we should be able to access personal Ceph buckets.
+
+------
+
 ![Build Status](https://codebuild.us-west-2.amazonaws.com/badges?uuid=eyJlbmNyeXB0ZWREYXRhIjoiMmtFajZWQmNUbEhidnBKN1VncjRrNVI3d0JUcFpGWUd3STh4T3N3Rnljc1BMaEIrYm9HU2t4YTV1RlE1YmlnUG9XM3luY0Ftc2tBc0xTeVFJMkVOa24wPSIsIml2UGFyYW1ldGVyU3BlYyI6IlBDMDl6UEROK1dlU1h1OWciLCJtYXRlcmlhbFNldFNlcmlhbCI6MX0%3D&branch=main)
 [![codecov](https://codecov.io/gh/aws/aws-sdk-js-v3/branch/main/graph/badge.svg)](https://codecov.io/gh/aws/aws-sdk-js-v3)
 [![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg)](https://github.com/prettier/prettier)
