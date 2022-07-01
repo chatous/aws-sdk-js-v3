@@ -130,11 +130,12 @@ export class SignatureV4 implements RequestPresigner, RequestSigner, StringSigne
     const region = signingRegion ?? (await this.regionProvider());
 
     const { longDate, shortDate } = formatDate(signingDate);
-    if (expiresIn > MAX_PRESIGNED_TTL) {
-      return Promise.reject(
-        "Signature version 4 presigned URLs" + " must have an expiration date less than one week in" + " the future"
-      );
-    }
+    /* This is the simple change to allow us to sign URLs for longer than a week */
+    // if (expiresIn > MAX_PRESIGNED_TTL) {
+    //   return Promise.reject(
+    //     "Signature version 4 presigned URLs" + " must have an expiration date less than one week in" + " the future"
+    //   );
+    // }
 
     const scope = createScope(shortDate, region, signingService ?? this.service);
     const request = moveHeadersToQuery(prepareRequest(originalRequest), { unhoistableHeaders });
